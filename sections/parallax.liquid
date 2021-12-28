@@ -3,13 +3,13 @@
 
 {% stylesheet %}
     .container{
-        background-image: url({{ 'bg-main.png' | image_url }});
+        background-image: url(//cdn.shopify.com/s/files/1/0607/3660/2301/t/3/assets/bg-main.png?v=7933024236596316453);
     }
 {% endstylesheet %}
 
 <div class="container" id="container">
-    <img src="{{ 'bg-text.png' | image_url: width: 773, height: 160 }}"  class="container__text paralax-item" id="container__text" alt="text" data-depth="0.1" height="160" width="773" loading="lazy">
-    <img src="{{ 'bg-shoe.png' | image_url: width: 342, height: 192 }}"  class="container__shoe paralax-item" id="container__shoe" alt="shoe" data-depth="0.1" height="192" width="342" loading="lazy">
+    <img src="{{ "bg-text.png" | asset_url }}" class="container__text paralax-item" id="container__text" alt="text" data-depth="0.1" height="160" width="773" loading="lazy">
+    <img src="{{ "bg-shoe.png" | asset_url }}" class="container__shoe paralax-item" id="container__shoe" alt="shoe" data-depth="0.1" height="192" width="342" loading="lazy">
 </div>
 
 <script>
@@ -44,9 +44,9 @@ let output = {
         end: 20,
         current: 0
     },
-    zIndex: {
-        range: 10000
-    },
+    // zIndex: {
+    //     range: 10000
+    // },
     scale: {
         start: 1,
         end: 0.2
@@ -99,13 +99,13 @@ const updateEachParallaxItem = () => {
         let itemOutput = {
             x: output.x.current - (output.x.current * depth),
             y: output.y.current - (output.y.current * depth),
-            zIndex: output.zIndex.range - (output.zIndex.range * depth),
+            // zIndex: output.zIndex.range - (output.zIndex.range * depth),
             scale: output.scale.start + (output.scale.range * depth),
             blur: (depth - output.blur.startingDepth) * output.blur.range
         }
 
         item.style.filter = 'blur(' + itemOutput.blur + 'px)';
-        item.style.zIndex = itemOutput.zIndex;
+        // item.style.zIndex = itemOutput.zIndex;
         let add = 50 + itemOutput.x;
         if (add < 0) {
             console.log("ADD: ", add);
