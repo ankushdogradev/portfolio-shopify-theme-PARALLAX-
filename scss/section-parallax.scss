@@ -17,7 +17,7 @@ body {
 .container {
     // height: 21.25rem;  MOBILE
     // height: 36.25rem;  IPAD
-    height: 35rem; // Desktop height
+    height: 50rem; // Desktop height
     width: 100%;
     background-color: #000;
     position: relative;
@@ -39,9 +39,52 @@ body {
 
     &__shoe {
         position: absolute;
-        height: 12rem;
-        bottom: 2.5rem;
+        height: 14rem;
+        bottom: 15rem;
         left: 50%;
         transform: translate(-50%, 0);
     }
+
+    &__shoe-2 {
+        position: absolute;
+        height: 14rem;
+        bottom: 3rem;
+        left: 20%;
+    }
+
+    &__shoe-3 {
+        position: absolute;
+        height: 14rem;
+        bottom: .5rem;
+        left: 50%;
+    }
+
+    &__shoe-4 {
+        position: absolute;
+        height: 14rem;
+        bottom: 3rem;
+        left: 80%;
+    }
+
+    &__shoe-5 {
+        position: absolute;
+        height: 14rem;
+        bottom: 25rem;
+        left: 20%;
+    }
+
+    &__shoe-6 {
+        position: absolute;
+        height: 14rem;
+        bottom: 29rem;
+        left: 50%;
+    }
+
+    &__shoe-7 {
+        position: absolute;
+        height: 14rem;
+        bottom: 25rem;
+        left: 80%;
+    }
+
 }

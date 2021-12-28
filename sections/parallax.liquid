@@ -9,7 +9,17 @@
 
 <div class="container" id="container">
     <img src="{{ "bg-text.png" | asset_url }}" class="container__text paralax-item" id="container__text" alt="text" data-depth="0.1" height="160" width="773" loading="lazy">
+
+    <img src="{{ "bg-shoe-2.png" | asset_url }}" class="container__shoe-2 paralax-item" id="container__shoe" alt="shoe" data-depth="0.4" height="192" width="342" loading="lazy">
+    <img src="{{ "bg-shoe-3.png" | asset_url }}" class="container__shoe-3 paralax-item" id="container__shoe" alt="shoe" data-depth="0.6" height="192" width="342" loading="lazy">
+    <img src="{{ "bg-shoe-4.png" | asset_url }}" class="container__shoe-4 paralax-item" id="container__shoe" alt="shoe" data-depth="0.4" height="192" width="342" loading="lazy">
+    
     <img src="{{ "bg-shoe.png" | asset_url }}" class="container__shoe paralax-item" id="container__shoe" alt="shoe" data-depth="0.1" height="192" width="342" loading="lazy">
+    
+    <img src="{{ "bg-shoe-5.png" | asset_url }}" class="container__shoe-5 paralax-item" id="container__shoe" alt="shoe" data-depth="0.4" height="192" width="342" loading="lazy">
+    <img src="{{ "bg-shoe-6.png" | asset_url }}" class="container__shoe-6 paralax-item" id="container__shoe" alt="shoe" data-depth="0.6" height="192" width="342" loading="lazy">
+    <img src="{{ "bg-shoe-7.png" | asset_url }}" class="container__shoe-7 paralax-item" id="container__shoe" alt="shoe" data-depth="0.4" height="192" width="342" loading="lazy">
+
 </div>
 
 <script>
@@ -44,9 +54,9 @@ let output = {
         end: 20,
         current: 0
     },
-    // zIndex: {
-    //     range: 10000
-    // },
+    zIndex: {
+        range: 10000
+    },
     scale: {
         start: 1,
         end: 0.2
@@ -91,8 +101,6 @@ const updateEachParallaxItem = () => {
     // apply output to html
     itemsArray.forEach((item, k) => {
         item.style.transform = 'translate(-50%, 0)';
-        console.log("BEFORE: ", item.style.transform);
-
         // let depth = item.dataset.depth;
         // parseFloat will convert string to number
         let depth = parseFloat(item.dataset.depth, 10);
@@ -114,7 +122,7 @@ const updateEachParallaxItem = () => {
         } else if (add > 0) {
             item.style.transform = 'scale(' + itemOutput.scale + ') translate(-' + add + '%, ' + itemOutput.y + '%)';
         }
-        console.log(item.style.transform)
+        console.log("item: ",item, " k: ",k)
     });
 }
 
