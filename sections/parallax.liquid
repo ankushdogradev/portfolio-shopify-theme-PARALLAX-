@@ -1,0 +1,24 @@
+{{ 'section-parallax.css' | asset_url | stylesheet_tag }}
+
+
+{% stylesheet %}
+    .container{
+        background-image: url({{ "bg-main.png" | image_url }});
+    }
+{% endstylesheet %}
+
+<div class="container" id="container">
+    <img src="{{ "bg-text.png" | image_url: width: 773, height: 160 }}"  class="container__text paralax-item" id="container__text" alt="text" data-depth="0.1" height="160" width="773" loading="lazy">
+    <img src="{{ "bg-shoe.png" | image_url: width: 342, height: 192 }}"  class="container__shoe paralax-item" id="container__shoe" alt="shoe" data-depth="0.1" height="192" width="342" loading="lazy">
+</div>
+
+{% schema %}
+{
+  "name": "Parallax",
+  "presets": [
+    {
+      "name": "Parallax"
+    }
+  ]
+}
+{% endschema %}

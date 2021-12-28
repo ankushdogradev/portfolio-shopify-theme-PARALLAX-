@@ -1,0 +1,2 @@
+html{box-sizing:border-box;font-size:100%}*,:after,:before{box-sizing:inherit}body{margin:0;padding:0}.container{background-color:#000;background-image:url(../assets/bg-main.png);background-position:50%;background-repeat:no-repeat;background-size:cover;height:35rem;overflow:hidden;position:relative;width:100%}.container__text{height:10rem}.container__shoe,.container__text{left:50%;position:absolute;transform:translate(-50%)}.container__shoe{bottom:2.5rem;height:12rem}
+/*# sourceMappingURL=section-parallax.css.map */

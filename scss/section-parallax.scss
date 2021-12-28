@@ -1,0 +1,47 @@
+html {
+    font-size: 100%;
+    box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    // height: 21.25rem;  MOBILE
+    // height: 36.25rem;  IPAD
+    height: 35rem; // Desktop height
+    width: 100%;
+    background-color: #000;
+    position: relative;
+
+    // background-image: url("../assets/bg-main.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+
+
+    &__text {
+        position: absolute;
+        // height: 5rem; MOBILE
+        height: 10rem;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+
+    &__shoe {
+        position: absolute;
+        height: 12rem;
+        bottom: 2.5rem;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+}
