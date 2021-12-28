@@ -2,15 +2,148 @@
 
 
 {% stylesheet %}
-    .container{
-        background-image: url({{ "bg-main.png" | image_url }});
+    .container {
+        background-image: url('{{ 'bg-main.png' | asset_url }}');
     }
 {% endstylesheet %}
 
 <div class="container" id="container">
-    <img src="{{ "bg-text.png" | image_url: width: 773, height: 160 }}"  class="container__text paralax-item" id="container__text" alt="text" data-depth="0.1" height="160" width="773" loading="lazy">
-    <img src="{{ "bg-shoe.png" | image_url: width: 342, height: 192 }}"  class="container__shoe paralax-item" id="container__shoe" alt="shoe" data-depth="0.1" height="192" width="342" loading="lazy">
+    <img src="{{ 'bg-text.png' | image_url: width: 773, height: 160 }}"  class="container__text paralax-item" id="container__text" alt="text" data-depth="0.1" height="160" width="773" loading="lazy">
+    <img src="{{ 'bg-shoe.png' | image_url: width: 342, height: 192 }}"  class="container__shoe paralax-item" id="container__shoe" alt="shoe" data-depth="0.1" height="192" width="342" loading="lazy">
 </div>
+
+<script>
+const itemsHTMLCollection = document.getElementsByClassName("paralax-item");
+const itemsArray = Array.from(itemsHTMLCollection);
+const bg = document.getElementById('container');
+
+let bgHeight = bg.offsetHeight;
+
+let input = {
+    mouseX: {
+        start: 0,
+        end: window.innerWidth,
+        current: 0
+    },
+    mouseY: {
+        start: 0,
+        end: bgHeight,
+        current: 0
+    }
+};
+
+// Transate x and y diection for objects range from -100px to 100px
+let output = {
+    x: {
+        start: -20,
+        end: 20,
+        current: 0
+    },
+    y: {
+        start: -20,
+        end: 20,
+        current: 0
+    },
+    zIndex: {
+        range: 10000
+    },
+    scale: {
+        start: 1,
+        end: 0.2
+    },
+    blur: {
+        startingDepth: 0.5,
+        range: 20
+    }
+
+}
+
+let mouse = {
+    x: window.innerWidth * 0.5,
+    y: bgHeight * 0.5
+}
+
+input.mouseX.range = input.mouseX.end - input.mouseX.start;
+input.mouseY.range = input.mouseY.end - input.mouseY.start;
+
+output.x.range = output.x.end - output.x.start;
+output.y.range = output.y.end - output.y.start;
+output.scale.range = output.scale.end - output.scale.start;
+
+const updateInputs = () => {
+    // Input- x (MOUSE)
+    input.mouseX.current = mouse.x;
+    input.mouseX.fraction = (input.mouseX.current - input.mouseX.start) / input.mouseX.range;
+
+    //Input- y (MOUSE)
+    input.mouseY.current = mouse.y;
+    input.mouseY.fraction = (input.mouseY.current - input.mouseY.start) / input.mouseY.range;
+}
+
+const updateOutputs = () => {
+    // Output x & y
+    output.x.current = output.x.start + (input.mouseX.fraction * output.x.range);
+    output.y.current = output.y.start + (input.mouseY.fraction * output.y.range);
+}
+
+const updateEachParallaxItem = () => {
+    console.log("Trigger")
+    // apply output to html
+    itemsArray.forEach((item, k) => {
+        item.style.transform = 'translate(-50%, 0)';
+        console.log("BEFORE: ", item.style.transform);
+
+        // let depth = item.dataset.depth;
+        // parseFloat will convert string to number
+        let depth = parseFloat(item.dataset.depth, 10);
+        let itemOutput = {
+            x: output.x.current - (output.x.current * depth),
+            y: output.y.current - (output.y.current * depth),
+            zIndex: output.zIndex.range - (output.zIndex.range * depth),
+            scale: output.scale.start + (output.scale.range * depth),
+            blur: (depth - output.blur.startingDepth) * output.blur.range
+        }
+
+        item.style.filter = 'blur(' + itemOutput.blur + 'px)';
+        item.style.zIndex = itemOutput.zIndex;
+        let add = 50 + itemOutput.x;
+        if (add < 0) {
+            console.log("ADD: ", add);
+            console.log("ADD (+ve): ", add * -1);
+            item.style.transform = 'scale(' + itemOutput.scale + ') translate(' + add * -1 + '%, ' + itemOutput.y + '%)';
+        } else if (add > 0) {
+            item.style.transform = 'scale(' + itemOutput.scale + ') translate(-' + add + '%, ' + itemOutput.y + '%)';
+        }
+        console.log(item.style.transform)
+    });
+}
+
+const mouseMoveEvent = (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    updateInputs();
+    updateOutputs();
+    updateEachParallaxItem();
+}
+
+// Tracks window size
+const handleResize = () => {
+    // Updates X.end and range on window resize
+    input.mouseX.end = window.innerWidth;
+    input.mouseX.range = input.mouseX.end - input.mouseX.start
+
+    // Updates Y.end and range on window resize
+    input.mouseY.end = bgHeight;
+    input.mouseY.range = input.mouseY.end - input.mouseY.start
+}
+
+window.addEventListener('mousemove', mouseMoveEvent);
+window.addEventListener('resize', handleResize);
+
+updateInputs();
+updateOutputs();
+updateEachParallaxItem();
+</script>
 
 {% schema %}
 {
