@@ -71,7 +71,7 @@
         "product": {
           "type": "product",
           "settings": {
-            "product": "",
+            "product": "white",
             "second_image": false,
             "image_padding": false,
             "secondary_background": false
@@ -96,22 +96,12 @@
         "desktop_layout": "left",
         "mobile_layout": "collage"
       }
-    },
-    "video": {
-      "type": "video",
-      "settings": {
-        "heading": "Quality",
-        "video_url": "https:\/\/youtu.be\/hiOsWiCxOTc",
-        "description": "",
-        "full_width": false
-      }
     }
   },
   "order": [
     "16406922361fe0f25a",
     "rich_text",
     "featured_products",
-    "collage",
-    "video"
+    "collage"
   ]
 }
