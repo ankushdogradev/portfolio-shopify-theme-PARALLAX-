@@ -74,7 +74,7 @@
             "product": "white",
             "second_image": false,
             "image_padding": false,
-            "secondary_background": false
+            "secondary_background": true
           }
         },
         "collection": {
